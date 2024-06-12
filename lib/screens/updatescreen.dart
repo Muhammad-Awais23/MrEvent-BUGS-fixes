@@ -70,7 +70,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   Future<void> uploadImagesAndSaveData() async {
     // Initialize the ProgressDialog
-    if (selectedImages.isNotEmpty) {
+    if (selectedImages.isNotEmpty &&
+        selectedImages.any((image) => image != null)) {
       try {
         setState(() {
           isLoading = true;
