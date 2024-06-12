@@ -52,6 +52,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
     progressDialog = ProgressDialog(context);
   }
 
+  LatLng? _selectedLocationLatLng;
   bool isLoading = false;
   ProgressDialog? progressDialog;
   @override
@@ -220,6 +221,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
             _selectedFacilitiesController.text.split('\n').toList(),
         'selectedFoodItems': _selectedFoodItems.text.split('\n').toList(),
         'selectedTimeSlots': _selectedTimeSlots.text.split('\n').toList(),
+        'latitude': _selectedLocationLatLng?.latitude,
+        'longitude': _selectedLocationLatLng?.longitude,
       });
       setState(() {
         isLoading = false;
@@ -321,7 +324,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   readOnly: true,
                   controller: _eventAddressController,
                   onTap: () async {
-                    LatLng? _selectedLocationLatLng;
                     var result = await Navigator.push(
                       context,
                       MaterialPageRoute(
